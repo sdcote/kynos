@@ -1,6 +1,7 @@
 package com.sdcote.kynos.core;
 
 import com.sdcote.kynos.api.KynosContext;
+import com.sdcote.kynos.api.Logger;
 import com.sdcote.kynos.api.Pod;
 import javafx.application.Platform;
 import javafx.scene.Node;
@@ -26,6 +27,8 @@ public class KynosController implements KynosContext {
     private final TilePane dashboardGrid;
     private final Label timeLabel;
     private final List<Pod> loadedPods = new ArrayList<>();
+    private boolean loggingEnabled = false; // Disabled by default
+
 
     public KynosController(BorderPane root) {
         this.root = root;
@@ -124,5 +127,20 @@ public class KynosController implements KynosContext {
     @Override
     public void updateStatusBarMessage(String message) {
         Platform.runLater(() -> System.out.println("Kynos Status: " + message));
+    }
+
+    @Override
+    public void setLoggingEnabled(boolean enabled) {
+        this.loggingEnabled = enabled;
+    }
+
+    @Override
+    public boolean isLoggingEnabled() {
+        return this.loggingEnabled;
+    }
+
+    @Override
+    public Logger getLogger(Class<?> clazz) {
+        return new KynosLogger(clazz, this);
     }
 }
