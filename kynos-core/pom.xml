@@ -29,7 +29,11 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.example.core.Launcher</mainClass>
+                    <mainClass>com.sdcote.kynos.core.KynosLauncher</mainClass>
+                    <options>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.graphics</option>
+                    </options>
                 </configuration>
             </plugin>
         </plugins>
