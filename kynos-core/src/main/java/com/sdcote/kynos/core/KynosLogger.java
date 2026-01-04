@@ -28,12 +28,14 @@ class KynosLogger implements Logger {
         }
     }
 
+    @Override
     public void warn(String message) {
         if (controller.isLoggingEnabled()) {
             System.err.format("%s [WARN] %s: %s%n", LocalDateTime.now().format(formatter), name, message);
         }
     }
 
+    @Override
     public void trace(String message) {
         if (controller.isLoggingEnabled()) {
             System.err.format("%s [TRACE] %s: %s%n", LocalDateTime.now().format(formatter), name, message);
