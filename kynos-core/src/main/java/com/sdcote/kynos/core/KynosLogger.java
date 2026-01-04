@@ -43,6 +43,13 @@ class KynosLogger implements Logger {
     }
 
     @Override
+    public void debug(String message) {
+        if (controller.isLoggingEnabled()) {
+            System.err.format("%s [DEBUG] %s: %s%n", LocalDateTime.now().format(formatter), name, message);
+        }
+    }
+
+    @Override
     public void error(String message, Throwable throwable) {
         if (controller.isLoggingEnabled()) {
             error(message);
